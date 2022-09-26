@@ -1,0 +1,13 @@
+---
+- name: create-user
+  hosts: servers
+  become: true
+
+  tasks:
+  - name: create-user-and-home
+    ansible.builtin.user:
+      name: test
+      home: /home/test
+      password: "{{ 'test' | password_hash('sha512')}}"
+      uid: 1005
+
